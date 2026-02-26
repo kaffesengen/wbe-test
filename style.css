@@ -1,126 +1,54 @@
 :root {
-    --p-brown: #a66a3a; /* Karakteristisk brunfarge fra bildet */
-    --p-beige: #f4f1e9; /* Beige bakgrunnsfarge fra bildet */
+    --p-brown: #a66a3a;
+    --p-beige: #f4f1e9;
     --p-dark: #1a1c1b;
 }
 
-body {
-    font-family: 'Georgia', serif;
-    margin: 0;
-    color: var(--p-dark);
-}
-
+* { box-sizing: border-box; }
+body { font-family: 'Georgia', serif; margin: 0; color: var(--p-dark); background-color: #fff; line-height: 1.6; }
 .bg-beige { background-color: var(--p-beige); }
 
 /* Full bredde containere */
-.container-wide {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+.container-wide { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 20px; }
 
 /* Navbar */
-.navbar {
-    position: fixed;
-    top: 0; width: 100%;
-    background: #fff;
-    z-index: 1000;
-    padding: 20px 0;
-    border-bottom: 1px solid #e0ddd5;
-}
-
-.nav-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-}
-
+.navbar { position: fixed; top: 0; width: 100%; background: #fff; z-index: 1000; padding: 20px 0; border-bottom: 1px solid #e0ddd5; }
+.nav-wrapper { display: flex; justify-content: space-between; align-items: center; padding: 0 40px; }
 .nav-logo { font-weight: bold; letter-spacing: 4px; font-size: 1.2rem; }
-
-.nav-links { list-style: none; display: flex; gap: 30px; align-items: center; margin: 0; }
+.nav-links { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; align-items: center; }
 .nav-links a { text-decoration: none; color: var(--p-dark); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
 
-/* Hero Full bredde */
-.hero-full {
-    height: 80vh;
-    background: url('https://cdn.sanity.io/images/62o36hlg/production_v4/7eeba6d48dfd62a2ddf8872bffe5019b159d07d1-3250x2298.jpg?auto=format&w=1600') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
-}
-
+/* Hero */
+.hero-full { height: 70vh; background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('https://cdn.sanity.io/images/62o36hlg/production_v4/7eeba6d48dfd62a2ddf8872bffe5019b159d07d1-3250x2298.jpg?auto=format&w=1600') center/cover; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
 .hero-content h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin: 0; font-weight: normal; }
 
-/* Booking Banner */
-.booking-banner {
-    background-color: var(--p-beige);
-    padding: 60px 0;
-}
+/* Booking Bar */
+.booking-banner { background-color: var(--p-beige); padding: 80px 0; }
+.search-flex { background: #fff; padding: 40px; display: grid; grid-template-columns: 2fr 1fr auto; gap: 20px; align-items: end; border-radius: 4px; max-width: 1200px; margin: 0 auto; }
+.field { display: flex; flex-direction: column; }
+.field label { font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 8px; font-weight: bold; color: #666; }
+.field input { padding: 12px; border: 1px solid #ddd; font-size: 1rem; border-radius: 2px; }
 
-.search-flex {
-    background: #fff;
-    padding: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr auto;
-    gap: 20px;
-    align-items: end;
-}
-
-/* Knapper fra Panorama-designet */
-.btn-search, .btn-card, .btn-nav {
-    background-color: var(--p-brown);
-    color: #fff;
-    border: none;
-    padding: 15px 30px;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
+/* Knapper */
+.btn-search, .btn-card, .btn-nav { background-color: var(--p-brown); color: #fff; border: none; padding: 15px 30px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; border-radius: 4px; font-weight: bold; }
 .btn-search:hover, .btn-card:hover { background-color: #8c582f; }
 
-.btn-outline {
-    background: none;
-    border: 1px solid #ddd;
-    padding: 14px 25px;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
-/* Offers Grid */
+/* Pakker */
 .offers-full { background-color: var(--p-beige); padding-bottom: 100px; }
-.offers-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-.offer-card { background: #fff; border-radius: 4px; overflow: hidden; }
+.section-header { text-align: center; margin-bottom: 50px; }
+.offers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.offer-card { background: #fff; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
 .offer-card img { width: 100%; height: 250px; object-fit: cover; }
-.card-body { padding: 30px; }
-.card-body h3 { font-size: 1.2rem; margin-bottom: 5px; }
-.subtitle { font-weight: bold; font-size: 0.9rem; margin-bottom: 15px; display: block; }
-.card-footer { display: flex; gap: 10px; margin-top: 20px; }
+.card-body { padding: 30px; text-align: center; }
 
-/* Aktivitet Side-layout */
-.page-header { padding: 150px 0 50px; text-align: center; background-color: var(--p-beige); }
-.activity-grid-full { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
-.activity-box { background: #fff; padding: 0; }
-.activity-box img { width: 100%; height: 400px; object-fit: cover; }
-.activity-info { padding: 40px; }
+/* Aktiviteter Layout */
+.page-header { padding: 160px 0 60px; text-align: center; background-color: var(--p-beige); }
+.activity-grid-full { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 80px; }
+.activity-box { background: #fff; border-radius: 4px; overflow: hidden; }
+.activity-box img { width: 100%; height: 250px; object-fit: cover; }
+.activity-info { padding: 30px; text-align: center; }
 
-/* Mobil-tilpasning */
 @media (max-width: 992px) {
-    .search-flex { grid-template-columns: 1fr; padding: 20px; width: 90%; }
-    .offers-grid, .activity-grid-full { grid-template-columns: 1fr; }
-    .nav-links { display: none; } /* Enkelt for mobil nå, du kan legge til burger-meny senere */
+    .search-flex, .offers-grid, .activity-grid-full { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
 }
