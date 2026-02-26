@@ -3,105 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pakker og Tilbud | Panorama</title>
-
+    <title>Panorama Hotell & Resort</title>
     <link rel="stylesheet" href="https://static-assets.clock-software.com/wbe_v2/clock-pms-wbe-integration.css">
     <script defer src="https://static-assets.clock-software.com/wbe_v2/clock-pms-wbe-integration.js"></script>
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://npmcdn.com/flatpickr/dist/l10n/no.js"></script>
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="nav-wrapper">
             <div class="nav-logo">PANORAMA</div>
             <ul class="nav-links">
-                <li><a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Hjem</a></li>
-                <li><a href="#pakker">Pakker og tilbud</a></li>
-                <li><a href="#aktiviteter">Aktiviteter</a></li>
-                <li><button type="button" class="btn-cta" data-clock-pms-wbe-button>Bestill opphold</button></li>
+                <li><a href="index.html">Hjem</a></li>
+                <li><a href="aktiviteter.html">Aktiviteter</a></li>
+                <li><button type="button" class="btn-nav" data-clock-pms-wbe-button>BESTILL OPPHOLD</button></li>
             </ul>
         </div>
     </nav>
 
-    <header class="hero">
+    <header class="hero-full">
         <div class="hero-content">
-            <h1>Pakker og tilbud</h1>
-            <p>Spesialkomponerte opplevelser for minner som varer</p>
+            <h1>Drøm deg bort</h1>
+            <p>Eksklusiv tid for to ved havet</p>
         </div>
     </header>
 
-    <section class="booking-section">
-        <div class="container">
-            <form id="wbe-form" class="search-bar" data-clock-pms-wbe-form>
-                <div class="input-field">
-                    <label>Ankomst & Avreise</label>
-                    <input type="text" id="date-range" placeholder="Velg datoer" readonly>
-                    <input type="hidden" name="arrival" id="arrival">
-                    <input type="hidden" name="departure" id="departure">
-                </div>
-                <div class="input-field">
-                    <label>Bonuskode</label>
-                    <input type="text" name="bonusCode" placeholder="Valgfritt">
-                </div>
-                <button type="submit" class="btn-search">Søk ledige rom</button>
-            </form>
-        </div>
+    <section class="booking-banner">
+        <form id="wbe-form" class="search-flex">
+            <div class="field">
+                <label>ANKOMST & AVREISE</label>
+                <input type="text" id="date-range" placeholder="Velg datoer" readonly>
+                <input type="hidden" name="arrival" id="arrival">
+                <input type="hidden" name="departure" id="departure">
+            </div>
+            <div class="field">
+                <label>BONUSKODE</label>
+                <input type="text" name="bonusCode" placeholder="Valgfritt">
+            </div>
+            <button type="submit" class="btn-search">SØK LEDIGE ROM</button>
+        </form>
     </section>
 
-    <main class="container">
-    <section id="pakker" class="offers-section">
-        <div class="section-header">
-            <h2>Våre pakker</h2>
-            <p>(sveip for å se flere)</p>
-        </div>
-
-        <div class="offers-grid">
-            <div class="offer-card">
-                <div class="offer-img">
-                    <img src="https://cdn.sanity.io/images/62o36hlg/production_v4/a0941adad765d408b8dea22ed14a6fcde9372b9a-4733x3297.jpg?auto=format&w=970" alt="Romantisk Pakke">
-                </div>
-                <div class="offer-content">
-                    <h3>ROMANTISK PAKKE ❤️</h3>
-                    <span class="subtitle">Et friminutt ved havet</span>
-                    <p>Unn dere en pause fra hverdagen i rolige og romantiske omgivelser. Inkluderer frokost og rødvin med sjokolade.</p>
-                    <button type="button" class="btn-package" id="btn-romantikk">Book nå</button>
-                    <button type="button" class="btn-secondary">Les mer</button>
-                </div>
+    <section class="offers-full">
+        <div class="container-wide">
+            <div class="section-header">
+                <h2>Våre pakker</h2>
+                <p>(sveip for å se flere)</p>
             </div>
-
-            <div class="offer-card">
-                <div class="offer-img">
-                    <img src="https://cdn.sanity.io/images/62o36hlg/production_v4/31274bf182ceb2c7fd6db18e9b9fd855c13b044c-5760x3840.jpg?auto=format&w=970" alt="Girls Getaway">
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <img src="https://cdn.sanity.io/images/62o36hlg/production_v4/a0941adad765d408b8dea22ed14a6fcde9372b9a-4733x3297.jpg?auto=format&w=800" alt="Romantisk">
+                    <div class="card-body">
+                        <h3>ROMANTISK PAKKE ❤️</h3>
+                        <p class="subtitle">Et friminutt ved havet</p>
+                        <p>Overnatting i det beste utsiktsrommet med balkong og romantisk pyntet rom.</p>
+                        <div class="card-footer">
+                            <button class="btn-card" id="btn-romantikk">BOOK NÅ</button>
+                            <button class="btn-outline">Les mer</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="offer-content">
-                    <h3>GIRLS GETAWAY</h3>
-                    <span class="subtitle">Jentetur</span>
-                    <p>Ta med mor, datter eller venninnegjengen i vår spesialdesignet pakke for jenter. Fantastisk sjøutsikt og egen terrasse.</p>
-                    <button type="button" class="btn-package" id="btn-girls">Book nå</button>
-                    <button type="button" class="btn-secondary">Les mer</button>
+                <div class="offer-card">
+                    <img src="https://cdn.sanity.io/images/62o36hlg/production_v4/31274bf182ceb2c7fd6db18e9b9fd855c13b044c-5760x3840.jpg?auto=format&w=800" alt="Girls">
+                    <div class="card-body">
+                        <h3>GIRLS GETAWAY</h3>
+                        <p class="subtitle">Jentetur</p>
+                        <p>Ta med mor eller venninnegjengen i vår spesialdesignet pakke for jenter.</p>
+                        <div class="card-footer">
+                            <button class="btn-card" id="btn-girls">BOOK NÅ</button>
+                            <button class="btn-outline">Les mer</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="offer-card">
-                <div class="offer-img">
-                    <img src="https://cdn.sanity.io/images/62o36hlg/production_v4/ad82d011d9081006de08805d4570d2bbac725655-7008x4672.jpg?auto=format&w=970" alt="Staycation with Sauna">
-                </div>
-                <div class="offer-content">
-                    <h3>STAYCATION WITH SAUNA</h3>
-                    <span class="subtitle">Tid sammen</span>
-                    <p>Den perfekte pakken når du skal tilbringe kvalitetstid. Inkluderer tilgang til spa-avdeling og badstubåt.</p>
-                    <button type="button" class="btn-package" id="btn-sauna">Book nå</button>
-                    <button type="button" class="btn-secondary">Les mer</button>
+                <div class="offer-card">
+                    <img src="https://cdn.sanity.io/images/62o36hlg/production_v4/ad82d011d9081006de08805d4570d2bbac725655-7008x4672.jpg?auto=format&w=800" alt="Sauna">
+                    <div class="card-body">
+                        <h3>STAYCATION WITH SAUNA</h3>
+                        <p class="subtitle">Tid sammen</p>
+                        <p>Inkludert i pakken er gratis inngang til velværeavdeling og badstue.</p>
+                        <div class="card-footer">
+                            <button class="btn-card" id="btn-sauna">BOOK NÅ</button>
+                            <button class="btn-outline">Les mer</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-</main>
 
     <script src="script.js"></script>
 </body>
