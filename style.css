@@ -106,3 +106,54 @@ body { font-family: 'Georgia', serif; margin: 0; color: var(--p-dark); backgroun
         padding-bottom: 80px;
     }
 }
+
+/* Skjul mobilmeny på desktop */
+.mobile-top-nav {
+    display: none;
+}
+
+@media (max-width: 992px) {
+    .nav-links {
+        display: none; /* Skjuler desktop-lenker */
+    }
+
+    .mobile-top-nav {
+        display: flex;
+        position: fixed;
+        top: 65px; /* Legges rett under hoved-logoen */
+        left: 0;
+        width: 100%;
+        background: #fff;
+        height: 60px;
+        z-index: 999;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom: 1px solid #e0ddd5;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .mob-link {
+        text-decoration: none;
+        color: var(--p-dark);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+    }
+
+    .btn-mob-book {
+        background-color: var(--p-brown);
+        color: #fff;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 4px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+    }
+
+    /* Juster hero og innhold så de ikke havner bak menyen */
+    .hero-full, .page-header {
+        padding-top: 130px; 
+    }
+}
