@@ -7,38 +7,41 @@
 
     <link rel="stylesheet" href="https://static-assets.clock-software.com/wbe_v2/clock-pms-wbe-integration.css">
     <link rel="stylesheet" href="https://static-assets.clock-software.com/wbe_v2/clock-pms-wbe-reminder.css">
-    
-    <link rel="stylesheet" href="style.css">
-
     <script defer src="https://static-assets.clock-software.com/wbe_v2/clock-pms-wbe-integration.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/no.js"></script>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header class="hero">
         <div class="hero-content">
-            <h1>DRØM DEG BORT<br>
-            Rom- og suiter med sjøutsikt</h1>
+            <h1>DRØM DEG BORT<br>Rom og suiter med sjøutsikt</h1>
             <p>Eksklusiv tid for to ved havet</p>
         </div>
     </header>
 
-    <div class="booking-bar">
-    <form data-clock-pms-wbe-form id="wbe-form">
-        <div class="input-group">
-            <label>Ankomst</label>
-            <input type="date" name="arrival">
+    <div class="booking-bar-container">
+        <div class="booking-bar glassmorphic">
+            <form data-clock-pms-wbe-form id="wbe-form">
+                <div class="input-group">
+                    <label>Velg datoer</label>
+                    <input type="text" id="date-range" placeholder="Ankomst - Avreise" readonly>
+                    <input type="hidden" name="arrival" id="arrival">
+                    <input type="hidden" name="departure" id="departure">
+                </div>
+                <div class="input-group">
+                    <label>Bonuskode</label>
+                    <input type="text" name="bonusCode" placeholder="Valgfritt">
+                </div>
+                <button type="submit" class="btn-main">Sjekk pris</button>
+            </form>
         </div>
-        <div class="input-group">
-            <label>Avreise</label>
-            <input type="date" name="departure">
-        </div>
-        <div class="input-group">
-            <label>Bonuskode</label>
-            <input type="text" name="bonusCode" placeholder="Valgfritt">
-        </div>
-        <button type="submit" class="btn-main">Sjekk pris</button>
-    </form>
-</div>
+    </div>
 
     <main class="container">
         <section class="intro">
