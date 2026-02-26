@@ -136,3 +136,18 @@ body {
         padding: 15px;
     }
 }
+
+/* Justering for tre felt i booking-baren */
+#wbe-form {
+    gap: 15px;
+}
+
+.input-group input[name="bonusCode"] {
+    width: 120px; /* Gjør bonusfeltet litt smalere enn datoene */
+}
+
+@media (max-width: 768px) {
+    .input-group input[name="bonusCode"] {
+        width: 100%; /* Full bredde på mobil */
+    }
+}
