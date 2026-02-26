@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aktiviteter | Panorama</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://static-assets.clock-software.com/wbe_v2/clock-pms-wbe-integration.css">
     <script defer src="https://static-assets.clock-software.com/wbe_v2/clock-pms-wbe-integration.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-beige">
 
@@ -14,16 +15,15 @@
             <div class="nav-logo">PANORAMA</div>
             <ul class="nav-links">
                 <li><a href="index.html">Hjem</a></li>
-                <li><a href="aktiviteter.html" class="active">Aktiviteter</a></li>
+                <li><a href="aktiviteter.html">Aktiviteter</a></li>
                 <li><button type="button" class="btn-nav" data-clock-pms-wbe-button>BESTILL OPPHOLD</button></li>
             </ul>
         </div>
     </nav>
 
-    <div class="page-header">
+    <header class="page-header">
         <h1>Utforsk kysten</h1>
-        <p>Aktiviteter og utleie hos Panorama</p>
-    </div>
+    </header>
 
     <section class="container-wide">
         <div class="activity-grid-full">
@@ -31,20 +31,29 @@
                 <img src="https://images.unsplash.com/photo-1571333250630-f0230c320b6d?auto=format&w=800" alt="Sykkel">
                 <div class="activity-info">
                     <h2>EL-sykkel</h2>
-                    <p>Utforsk Øygarden på to hjul. Våre el-sykler tar deg dit du vil uten slit.</p>
-                    <button class="btn-card" onclick='window.clockPmsWbeShowActivities({"activityIds":[159]})'>BESTILL LEIE</button>
+                    <p>Lei el-sykkel og oppdag Øygarden.</p>
+                    <button type="button" class="btn-card" id="act-sykkel">BESTILL LEIE</button>
                 </div>
             </div>
             <div class="activity-box">
                 <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&w=800" alt="Kajakk">
                 <div class="activity-info">
                     <h2>Havkajakk</h2>
-                    <p>Opplev den unike skjærgården fra vannflaten i en av våre stødige kajakker.</p>
-                    <button class="btn-card" onclick='window.clockPmsWbeShowActivities({"activityIds":[160]})'>BESTILL LEIE</button>
+                    <p>Opplev fjorden fra kajakken.</p>
+                    <button type="button" class="btn-card" id="act-kajakk">BESTILL LEIE</button>
+                </div>
+            </div>
+            <div class="activity-box">
+                <img src="https://images.unsplash.com/photo-1520242253291-94981d2396e2?auto=format&w=800" alt="SUP">
+                <div class="activity-info">
+                    <h2>SUP-brett</h2>
+                    <p>Finn balansen på blikkstille vann.</p>
+                    <button type="button" class="btn-card" id="act-sup">BESTILL LEIE</button>
                 </div>
             </div>
         </div>
     </section>
 
+    <script src="script.js"></script>
 </body>
 </html>
