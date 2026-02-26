@@ -52,3 +52,57 @@ body { font-family: 'Georgia', serif; margin: 0; color: var(--p-dark); backgroun
     .search-flex, .offers-grid, .activity-grid-full { grid-template-columns: 1fr; }
     .nav-links { display: none; }
 }
+
+/* Skjul mobilmenyen på desktop som standard */
+.mobile-nav {
+    display: none;
+}
+
+@media (max-width: 992px) {
+    /* Skjul den vanlige toppmenyen på mobil for å unngå rot */
+    .nav-links {
+        display: none;
+    }
+
+    /* Vis den nye bunnmenyen på mobil */
+    .mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        height: 70px;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        z-index: 9999;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 10px;
+        border-top: 1px solid #e0ddd5;
+    }
+
+    .mob-link {
+        text-decoration: none;
+        color: var(--p-dark);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+    }
+
+    .btn-mob-book {
+        background-color: var(--p-brown);
+        color: #fff;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 4px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+    }
+
+    /* Gi litt ekstra padding i bunnen av siden så innholdet ikke skjules bak menyen */
+    body {
+        padding-bottom: 80px;
+    }
+}
