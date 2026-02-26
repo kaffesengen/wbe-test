@@ -1,65 +1,54 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const isMobile = () => window.innerWidth <= 900;
-
-    // Dato-logikk for dagens dato
+    // Dato-oppsett
     const now = new Date();
     const tomorrow = new Date();
     tomorrow.setDate(now.getDate() + 1);
+    const formatDate = (d) => d.toISOString().split('T')[0];
 
-    const formatDate = (date) => date.toISOString().split('T')[0];
-    const arrivalStr = formatDate(now);
-    const departureStr = formatDate(tomorrow);
-
-    // 1. Initialiser Clock PMS
-    window.clockPmsWbeInit({
-        wbeBaseUrl: "https://sky-eu1.clock-software.com/spa/pms-wbe/#/hotel/11528",
-        entrypoint: "rooms",
-        defaultMode: isMobile() ? "mobile" : "fullscreen", 
-        roundedCorners: false,
-        language: "nb"
-    });
-
-    // 2. Funksjon for å åpne spesifikke pakker med rateIds
-    const openPackage = (rateId) => {
-        window.clockPmsWbeShowRooms({
-            "submit": true,
-            "arrival": arrivalStr,
-            "departure": departureStr,
-            "rateIds": [rateId],
-            "mode": isMobile() ? "mobile" : "fullscreen"
-        });
-    };
-
-    // Koble knapper til pakker
-    document.getElementById("btn-romantikk")?.addEventListener("click", () => openPackage(734476));
-    document.getElementById("btn-girls")?.addEventListener("click", () => openPackage(734474));
-    document.getElementById("btn-sauna")?.addEventListener("click", () => openPackage(734475));
-
-    // 3. Flatpickr for søkebaren
     const fp = flatpickr("#date-range", {
         mode: "range",
         minDate: "today",
         locale: "no",
         dateFormat: "Y-m-d",
-        onClose: function(selectedDates) {
+        onClose: (selectedDates) => {
             if (selectedDates.length === 2) {
-                document.getElementById("arrival").value = fp.formatDate(selectedDates[0], "Y-m-d");
-                document.getElementById("departure").value = fp.formatDate(selectedDates[1], "Y-m-d");
+                document.getElementById("arrival").value = formatDate(selectedDates[0]);
+                document.getElementById("departure").value = formatDate(selectedDates[1]);
             }
         }
     });
 
-    // 4. Håndter vanlig søkeskjema
-    document.getElementById("wbe-form")?.addEventListener("submit", (e) => {
+    // Initialiser Clock
+    window.clockPmsWbeInit({
+        wbeBaseUrl: "https://sky-eu1.clock-software.com/spa/pms-wbe/#/hotel/11528",
+        defaultMode: window.innerWidth < 900 ? "mobile" : "fullscreen",
+        language: "nb"
+    });
+
+    // Fiks for bonuskode-feil
+    document.getElementById("wbe-form").addEventListener("submit", (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        
-        window.clockPmsWbeShow({
+        const params = {
             arrival: formData.get("arrival"),
             departure: formData.get("departure"),
-            bonusCode: formData.get("bonusCode"),
-            submit: true,
-            mode: isMobile() ? "mobile" : "fullscreen"
-        });
+            submit: true
+        };
+
+        const bonus = formData.get("bonusCode");
+        if (bonus && bonus.trim() !== "") {
+            params.bonusCode = bonus.trim();
+        }
+
+        window.clockPmsWbeShow(params);
     });
+
+    // Pakke-knapper
+    const showPack = (id) => window.clockPmsWbeShowRooms({
+        submit: true, arrival: formatDate(now), departure: formatDate(tomorrow), rateIds: [id]
+    });
+
+    document.getElementById("btn-romantikk")?.onclick = () => showPack(734476);
+    document.getElementById("btn-girls")?.onclick = () => showPack(734474);
+    document.getElementById("btn-sauna")?.onclick = () => showPack(734475);
 });
