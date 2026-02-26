@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const isMobile = () => window.innerWidth <= 768;
 
-    // 1. Initialiser Clock PMS
+    // Initialiserer Clock PMS WBE
     window.clockPmsWbeInit({
         wbeBaseUrl: "https://sky-eu1.clock-software.com/spa/pms-wbe/#/hotel/11528",
         entrypoint: "rooms",
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         language: "nb"
     });
 
-    // 2. Initialiser Flatpickr (Delt datovelger)
+    // Elegant datovelger (Flatpickr)
     const fp = flatpickr("#date-range", {
         mode: "range",
         minDate: "today",
@@ -18,14 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
         locale: "no",
         onClose: function(selectedDates) {
             if (selectedDates.length === 2) {
-                // Fyller de skjulte feltene som Clock PMS trenger
                 document.getElementById("arrival").value = fp.formatDate(selectedDates[0], "Y-m-d");
                 document.getElementById("departure").value = fp.formatDate(selectedDates[1], "Y-m-d");
             }
         }
     });
 
-    // 3. Håndter innsending
+    // Innsending av skjema
     const bookingForm = document.getElementById("wbe-form");
     if (bookingForm) {
         bookingForm.addEventListener("submit", (e) => {
