@@ -1,116 +1,46 @@
 :root {
     --panorama-dark: #1a1c1b;
     --panorama-gold: #b89b5e;
-    --bg-light: #f9f9f9;
-    --text-muted: #666;
+    --bg-light: #f4f4f4;
 }
 
-* { box-sizing: border-box; }
+body { font-family: 'Georgia', serif; margin: 0; color: var(--panorama-dark); line-height: 1.6; }
 
-body {
-    font-family: 'Georgia', serif; /* Mer likt Panorama sin elegante stil */
-    margin: 0;
-    color: var(--panorama-dark);
-    line-height: 1.6;
-    background-color: #fff;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Navigasjon - Ren og hvit */
-.navbar {
-    position: fixed;
-    top: 0; width: 100%;
-    background: #fff;
-    padding: 20px 0;
-    z-index: 1000;
-    border-bottom: 1px solid #eee;
-}
-
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
-
-.nav-logo { font-weight: bold; letter-spacing: 3px; font-size: 1.2rem; }
-
-.nav-links { list-style: none; display: flex; gap: 30px; align-items: center; margin: 0; }
-.nav-links a { text-decoration: none; color: var(--panorama-dark); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
-
-.btn-cta { background: var(--panorama-dark); color: #fff; border: none; padding: 10px 20px; cursor: pointer; text-transform: uppercase; font-size: 0.7rem; }
+/* Navigasjon */
+.navbar { position: fixed; top: 0; width: 100%; background: #fff; padding: 15px 0; z-index: 1000; border-bottom: 1px solid #eee; }
+.nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+.nav-logo { font-weight: bold; letter-spacing: 2px; }
+.nav-links { list-style: none; display: flex; gap: 25px; align-items: center; margin: 0; }
+.nav-links a { text-decoration: none; color: var(--panorama-dark); text-transform: uppercase; font-size: 0.7rem; }
+.btn-cta { background: var(--panorama-dark); color: #fff; border: none; padding: 8px 16px; cursor: pointer; text-transform: uppercase; }
 
 /* Hero */
-.hero {
-    height: 80vh;
-    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
-                url('https://cdn.sanity.io/images/62o36hlg/production_v4/7eeba6d48dfd62a2ddf8872bffe5019b159d07d1-3250x2298.jpg?auto=format&w=1600&q=80') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-align: center;
-}
+.hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://cdn.sanity.io/images/62o36hlg/production_v4/7eeba6d48dfd62a2ddf8872bffe5019b159d07d1-3250x2298.jpg?auto=format&w=1600&q=80') center/cover; display: flex; align-items: center; justify-content: center; color: #fff; text-align: center; }
+.hero h1 { font-size: 3.5rem; font-weight: normal; }
 
-.hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: normal; margin: 0; }
-
-/* Booking Bar - Ren og integrert */
+/* Booking Bar */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 .booking-section { transform: translateY(-50%); position: relative; z-index: 10; }
+.search-bar { background: #fff; padding: 25px; display: grid; grid-template-columns: 2fr 1fr auto; gap: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.btn-search { background: var(--panorama-gold); color: #fff; border: none; padding: 0 30px; cursor: pointer; text-transform: uppercase; font-weight: bold; }
 
-.search-bar {
-    background: #fff;
-    padding: 30px;
-    display: grid;
-    grid-template-columns: 2fr 1fr auto;
-    gap: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    border-radius: 4px;
-}
+/* Pakke Grid */
+.offers-section { padding: 60px 0; }
+.section-header { text-align: center; margin-bottom: 40px; }
+.underline { width: 50px; height: 2px; background: var(--panorama-gold); margin: 10px auto; }
 
-.input-field { display: flex; flex-direction: column; }
-.input-field label { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px; }
-.input-field input { padding: 12px; border: 1px solid #ddd; font-size: 1rem; border-radius: 2px; }
+.offers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+.offer-card { background: #fff; border: 1px solid #eee; overflow: hidden; transition: 0.3s; }
+.offer-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+.offer-img img { width: 100%; height: 250px; object-fit: cover; }
+.offer-content { padding: 25px; text-align: center; }
+.offer-content h3 { font-weight: normal; letter-spacing: 1px; margin-bottom: 15px; }
+.offer-content p { color: #666; font-size: 0.9rem; margin-bottom: 20px; }
 
-.btn-search { background: var(--panorama-gold); color: #fff; border: none; padding: 0 40px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+.btn-package { background: var(--panorama-dark); color: #fff; border: none; padding: 12px 25px; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; width: 100%; }
 
-/* Info Block - Pakke */
-.info-block { margin: 60px 0; }
-.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-
-.info-image img { width: 100%; border-radius: 2px; height: 500px; object-fit: cover; }
-
-.subtitle { color: var(--panorama-gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
-h2 { font-size: 2.5rem; font-weight: normal; margin: 10px 0; }
-
-.feature-list { padding: 0; list-style: none; margin: 20px 0; color: var(--text-muted); }
-.feature-list li::before { content: "— "; color: var(--panorama-gold); }
-
-.btn-primary { background: var(--panorama-dark); color: #fff; padding: 15px 30px; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
-
-/* Aktiviteter */
-.activities-section { padding: 80px 0; background: var(--bg-light); margin: 0 -20px; padding-left: 20px; padding-right: 20px; }
-.section-header { text-align: center; margin-bottom: 50px; }
-
-.activity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-
-.act-img-wrapper { height: 250px; overflow: hidden; margin-bottom: 20px; }
-.act-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-.activity-item:hover img { transform: scale(1.05); }
-
-.btn-text { background: none; border: none; color: var(--panorama-gold); font-weight: bold; cursor: pointer; padding: 0; font-size: 1rem; }
-
-/* Mobil Skalering */
-@media (max-width: 900px) {
+/* Responsivitet */
+@media (max-width: 768px) {
     .search-bar { grid-template-columns: 1fr; }
-    .info-grid { grid-template-columns: 1fr; }
-    .info-image { order: 2; }
-    .info-text { order: 1; margin-bottom: 30px; }
-    .info-image img { height: 300px; }
+    .hero h1 { font-size: 2.5rem; }
 }
