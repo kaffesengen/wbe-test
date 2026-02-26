@@ -1,19 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // Funksjon for å sjekke om brukeren er på mobil
     const isMobile = () => window.innerWidth <= 768;
 
-    // 1. Initialiser Clock PMS Web Booking Engine
     window.clockPmsWbeInit({
         wbeBaseUrl: "https://sky-eu1.clock-software.com/spa/pms-wbe/#/hotel/11528",
         entrypoint: "rooms",
-        // Velger 'mobile' for små skjermer og 'fullscreen' for desktop
         defaultMode: isMobile() ? "mobile" : "fullscreen", 
         roundedCorners: true,
         language: "nb"
     });
 
-    // 2. Håndter bookingskjemaet (Søkebar)
     const bookingForm = document.getElementById("wbe-form");
     
     if (bookingForm) {
@@ -21,19 +16,24 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             const formData = new FormData(e.target);
             
-            window.clockPmsWbeShow({
-    arrival: formData.get("arrival"),
-    departure: formData.get("departure"),
-    // bonusCode: formData.get("bonusCode"), // Kommenter ut denne linjen midlertidig
-    submit: true 
-});
+            // Lag objektet for forespørselen
+            const bookingParams = {
+                arrival: formData.get("arrival"),
+                departure: formData.get("departure"),
+                mode: isMobile() ? "mobile" : "fullscreen",
+                submit: true 
+            };
+
+            // Hent verdien fra bonusfeltet
+            const bonus = formData.get("bonusCode");
+
+            // Kun legg til bonusCode hvis feltet ikke er tomt
+            if (bonus && bonus.trim() !== "") {
+                bookingParams.bonusCode = bonus.trim();
+            }
+
+            // Åpne booking-motoren med de filtrerte parameterne
+            window.clockPmsWbeShow(bookingParams);
         });
     }
-
-    // 3. Oppdater modus ved endring av skjermstørrelse (valgfritt, men sikrere)
-    window.addEventListener('resize', () => {
-        const currentMode = isMobile() ? "mobile" : "fullscreen";
-        // Vi re-initialiserer ikke hele scriptet, men Clock sin integrasjon 
-        // håndterer stort sett dette bra så lenge window.clockPmsWbeShow kalles med riktig mode.
-    });
 });
