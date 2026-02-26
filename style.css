@@ -10,13 +10,13 @@ body {
     padding: 0;
     color: #333;
     background-color: #fff;
+    overflow-x: hidden;
 }
 
 .hero {
-    height: 80vh;
-    /* Bildet du sendte er lagt inn her */
-    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
-                url('https://s3-eu-west-1.amazonaws.com/stripo.clock-pms/fed8d5b42144444d91ef462b1b04d605/lib/pluginId_fed8d5b42144444d91ef462b1b04d605_images/a321db46-c7d5-4784-9d14-ad982d97592b/11528/nr3a0196edit2.jpg') center/cover;
+    height: 85vh;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
+                url('https://cdn.sanity.io/images/62o36hlg/production_v4/7eeba6d48dfd62a2ddf8872bffe5019b159d07d1-3250x2298.jpg?auto=format&dpr=1&fit=crop&fp-x=0.5&fp-y=0.5&h=920&q=80&w=1152') center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,105 +25,91 @@ body {
 }
 
 .hero-content h1 {
-    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 300;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    text-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
 
-/* Glassmorphism feltet */
 .booking-bar-container {
     margin-top: -60px;
     display: flex;
     justify-content: center;
     padding: 0 20px;
     position: relative;
-    z-index: 10;
+    z-index: 100;
 }
 
 .glassmorphic {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 60px;
     padding: 25px 50px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     width: 100%;
-    max-width: 1000px;
+    max-width: 1050px;
 }
 
-#wbe-form {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 25px;
-}
+#wbe-form { display: flex; gap: 20px; align-items: center; }
 
-.input-group {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.input-group label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: white;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-.input-group input {
-    background: rgba(255, 255, 255, 0.95);
-    border: none;
-    padding: 14px 25px;
-    border-radius: 30px;
-    font-size: 1rem;
-    outline: none;
-}
+.input-group { flex: 1; display: flex; flex-direction: column; }
+.input-group label { color: white; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 5px; font-weight: bold; }
+.input-group input { padding: 12px 20px; border-radius: 30px; border: none; font-size: 1rem; }
 
 .btn-main {
-    background-color: var(--panorama-gold);
+    background: var(--panorama-gold);
     color: white;
-    padding: 16px 45px;
+    padding: 15px 40px;
     border: none;
     border-radius: 40px;
-    text-transform: uppercase;
     font-weight: bold;
-    letter-spacing: 1px;
     cursor: pointer;
-    transition: transform 0.2s, background 0.3s;
+    transition: 0.3s;
 }
 
-.btn-main:hover {
-    background-color: var(--white);
-    color: var(--panorama-gold);
-    transform: translateY(-2px);
-}
+.btn-main:hover { background: white; color: var(--panorama-gold); }
 
-/* Innhold under hero */
-.container {
-    max-width: 1100px;
-    margin: 100px auto;
-    padding: 0 20px;
-}
-
-.package-grid {
+/* Aktivitetsseksjon */
+.activities { margin-top: 80px; text-align: center; }
+.activity-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
 }
 
-.image-box img {
-    width: 100%;
-    border-radius: 10px;
+.activity-card {
+    padding: 20px;
+    border-radius: 30px;
+    text-align: center;
+    background: rgba(44, 62, 52, 0.05); /* Svak Panorama-grønn */
 }
+
+.activity-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+
+.btn-activity {
+    background: transparent;
+    border: 2px solid var(--panorama-green);
+    color: var(--panorama-green);
+    padding: 10px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-activity:hover { background: var(--panorama-green); color: white; }
+
+.divider { border: 0; height: 1px; background: #eee; margin: 80px 0; }
 
 @media (max-width: 768px) {
     #wbe-form { flex-direction: column; }
-    .glassmorphic { border-radius: 25px; padding: 30px 20px; margin-top: -100px; }
-    .package-grid { grid-template-columns: 1fr; }
+    .glassmorphic { border-radius: 20px; margin-top: -80px; }
 }
