@@ -1,54 +1,81 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Dato-oppsett
-    const now = new Date();
+    // 1. DATO LOGIKK
+    const today = new Date();
     const tomorrow = new Date();
-    tomorrow.setDate(now.getDate() + 1);
-    const formatDate = (d) => d.toISOString().split('T')[0];
+    tomorrow.setDate(today.getDate() + 1);
+    
+    const fmt = (d) => d.toISOString().split('T')[0];
 
-    const fp = flatpickr("#date-range", {
-        mode: "range",
-        minDate: "today",
-        locale: "no",
-        dateFormat: "Y-m-d",
-        onClose: (selectedDates) => {
-            if (selectedDates.length === 2) {
-                document.getElementById("arrival").value = formatDate(selectedDates[0]);
-                document.getElementById("departure").value = formatDate(selectedDates[1]);
+    // 2. INITIALISER FLAT PICKR (Hvis feltet finnes på siden)
+    const dateInput = document.getElementById("date-range-input");
+    if (dateInput) {
+        flatpickr("#date-range-input", {
+            mode: "range",
+            minDate: "today",
+            locale: "no",
+            dateFormat: "Y-m-d",
+            onClose: function(selectedDates) {
+                if (selectedDates.length === 2) {
+                    document.getElementById("arrival-field").value = fmt(selectedDates[0]);
+                    document.getElementById("departure-field").value = fmt(selectedDates[1]);
+                }
             }
-        }
-    });
+        });
+    }
 
-    // Initialiser Clock
-    window.clockPmsWbeInit({
-        wbeBaseUrl: "https://sky-eu1.clock-software.com/spa/pms-wbe/#/hotel/11528",
-        defaultMode: window.innerWidth < 900 ? "mobile" : "fullscreen",
-        language: "nb"
-    });
+    // 3. INITIALISER CLOCK PMS WBE
+    // Merk: Vi bruker standard init uten videresending her
+    if (window.clockPmsWbeInit) {
+        window.clockPmsWbeInit({
+            wbeBaseUrl: "https://sky-eu1.clock-software.com/spa/pms-wbe/#/hotel/11528",
+            defaultMode: window.innerWidth < 900 ? "mobile" : "fullscreen",
+            language: "nb"
+        });
+    }
 
-    // Fiks for bonuskode-feil
-    document.getElementById("wbe-form").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const params = {
-            arrival: formData.get("arrival"),
-            departure: formData.get("departure"),
+    // 4. SØKEKNAPP (SØK LEDIGE ROM)
+    const searchForm = document.getElementById("wbe-form-main");
+    if (searchForm) {
+        searchForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const arrival = document.getElementById("arrival-field").value;
+            const departure = document.getElementById("departure-field").value;
+            const bonus = document.getElementById("bonus-input").value;
+
+            if (!arrival || !departure) {
+                alert("Vennligst velg datoer i kalenderen først.");
+                return;
+            }
+
+            const params = { arrival, departure, submit: true };
+            if (bonus && bonus.trim() !== "") params.bonusCode = bonus.trim();
+
+            window.clockPmsWbeShow(params);
+        });
+    }
+
+    // 5. PAKKE-KNAPPER (Knyttet til rateIds)
+    const pkgAction = (id) => {
+        window.clockPmsWbeShowRooms({
+            arrival: fmt(today),
+            departure: fmt(tomorrow),
+            rateIds: [id],
             submit: true
-        };
+        });
+    };
 
-        const bonus = formData.get("bonusCode");
-        if (bonus && bonus.trim() !== "") {
-            params.bonusCode = bonus.trim();
-        }
+    document.getElementById("pkg-romantikk")?.addEventListener("click", () => pkgAction(734476));
+    document.getElementById("pkg-girls")?.addEventListener("click", () => pkgAction(734474));
+    document.getElementById("pkg-sauna")?.addEventListener("click", () => pkgAction(734475));
 
-        window.clockPmsWbeShow(params);
-    });
+    // 6. AKTIVITET-KNAPPER (Aktiviteter side)
+    const actAction = (id) => {
+        window.clockPmsWbeShowActivities({
+            activityIds: [id]
+        });
+    };
 
-    // Pakke-knapper
-    const showPack = (id) => window.clockPmsWbeShowRooms({
-        submit: true, arrival: formatDate(now), departure: formatDate(tomorrow), rateIds: [id]
-    });
-
-    document.getElementById("btn-romantikk")?.onclick = () => showPack(734476);
-    document.getElementById("btn-girls")?.onclick = () => showPack(734474);
-    document.getElementById("btn-sauna")?.onclick = () => showPack(734475);
+    document.getElementById("act-sykkel")?.addEventListener("click", () => actAction(159));
+    document.getElementById("act-kajakk")?.addEventListener("click", () => actAction(160));
+    document.getElementById("act-sup")?.addEventListener("click", () => actAction(161));
 });
