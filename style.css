@@ -1,46 +1,141 @@
 :root {
     --panorama-dark: #1a1c1b;
     --panorama-gold: #b89b5e;
-    --bg-light: #f4f4f4;
+    --panorama-brown: #a66a3a; /* Knappe-fargen fra bildet */
+    --panorama-beige: #f4f1e9; /* Bakgrunnsfargen fra bildet */
+    --white: #ffffff;
+    --text-main: #4a4a4a;
 }
 
-body { font-family: 'Georgia', serif; margin: 0; color: var(--panorama-dark); line-height: 1.6; }
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    color: var(--text-main);
+    line-height: 1.7;
+    background-color: var(--white);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
 
 /* Navigasjon */
-.navbar { position: fixed; top: 0; width: 100%; background: #fff; padding: 15px 0; z-index: 1000; border-bottom: 1px solid #eee; }
-.nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-.nav-logo { font-weight: bold; letter-spacing: 2px; }
-.nav-links { list-style: none; display: flex; gap: 25px; align-items: center; margin: 0; }
-.nav-links a { text-decoration: none; color: var(--panorama-dark); text-transform: uppercase; font-size: 0.7rem; }
-.btn-cta { background: var(--panorama-dark); color: #fff; border: none; padding: 8px 16px; cursor: pointer; text-transform: uppercase; }
+.navbar {
+    position: fixed;
+    top: 0; width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px 0;
+    z-index: 1000;
+    border-bottom: 1px solid #f0eee8;
+}
 
-/* Hero */
-.hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://cdn.sanity.io/images/62o36hlg/production_v4/7eeba6d48dfd62a2ddf8872bffe5019b159d07d1-3250x2298.jpg?auto=format&w=1600&q=80') center/cover; display: flex; align-items: center; justify-content: center; color: #fff; text-align: center; }
-.hero h1 { font-size: 3.5rem; font-weight: normal; }
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
 
-/* Booking Bar */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-.booking-section { transform: translateY(-50%); position: relative; z-index: 10; }
-.search-bar { background: #fff; padding: 25px; display: grid; grid-template-columns: 2fr 1fr auto; gap: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-.btn-search { background: var(--panorama-gold); color: #fff; border: none; padding: 0 30px; cursor: pointer; text-transform: uppercase; font-weight: bold; }
+.nav-logo { font-weight: bold; letter-spacing: 4px; font-size: 1.4rem; color: var(--panorama-dark); }
 
-/* Pakke Grid */
-.offers-section { padding: 60px 0; }
-.section-header { text-align: center; margin-bottom: 40px; }
-.underline { width: 50px; height: 2px; background: var(--panorama-gold); margin: 10px auto; }
+.nav-links { list-style: none; display: flex; gap: 40px; align-items: center; margin: 0; }
+.nav-links a { text-decoration: none; color: var(--panorama-dark); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
 
-.offers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-.offer-card { background: #fff; border: 1px solid #eee; overflow: hidden; transition: 0.3s; }
-.offer-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-.offer-img img { width: 100%; height: 250px; object-fit: cover; }
-.offer-content { padding: 25px; text-align: center; }
-.offer-content h3 { font-weight: normal; letter-spacing: 1px; margin-bottom: 15px; }
-.offer-content p { color: #666; font-size: 0.9rem; margin-bottom: 20px; }
+/* Hero Seksjon */
+.hero {
+    height: 70vh;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
+                url('https://cdn.sanity.io/images/62o36hlg/production_v4/7eeba6d48dfd62a2ddf8872bffe5019b159d07d1-3250x2298.jpg?auto=format&w=1600&q=80') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+}
 
-.btn-package { background: var(--panorama-dark); color: #fff; border: none; padding: 12px 25px; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; width: 100%; }
+.hero h1 { font-size: 4rem; font-weight: normal; letter-spacing: 2px; }
 
-/* Responsivitet */
-@media (max-width: 768px) {
+/* Booking Seksjon */
+.booking-section { background-color: var(--panorama-beige); padding: 80px 0; margin-top: 0; }
+
+.search-bar {
+    background: var(--white);
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 30px;
+    border-radius: 2px;
+}
+
+.input-field label { font-size: 0.75rem; text-transform: uppercase; color: var(--panorama-dark); margin-bottom: 10px; display: block; letter-spacing: 1px; }
+.input-field input { width: 100%; padding: 15px; border: 1px solid #e0ddd5; border-radius: 4px; font-size: 1rem; }
+
+/* Pakke-seksjon (Våre pakker) */
+.offers-section { background-color: var(--panorama-beige); padding: 100px 0; }
+
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-header h2 { font-size: 2.2rem; font-weight: normal; margin-bottom: 10px; }
+.section-header p { font-style: italic; color: var(--text-main); }
+
+.offers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* Kort-design basert på bilde */
+.offer-card {
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.offer-img img { width: 100%; height: 220px; object-fit: cover; }
+
+.offer-content { padding: 35px; flex-grow: 1; }
+.offer-content h3 { font-size: 1.1rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; color: var(--panorama-dark); }
+.offer-content .subtitle { display: block; font-size: 0.9rem; font-weight: bold; margin-bottom: 15px; }
+.offer-content p { font-size: 0.95rem; color: var(--text-main); margin-bottom: 25px; line-height: 1.6; }
+
+/* Knappene fra bildet */
+.btn-search, .btn-package, .btn-cta, .btn-nav {
+    background-color: var(--panorama-brown);
+    color: var(--white);
+    border: none;
+    padding: 12px 25px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.btn-search:hover, .btn-package:hover, .btn-cta:hover { background-color: #8c582f; }
+
+.btn-secondary {
+    background: none;
+    border: 1px solid #e0ddd5;
+    color: var(--text-main);
+    padding: 10px 20px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* Mobil-skalering */
+@media (max-width: 1024px) {
+    .offers-grid { grid-template-columns: 1fr; }
     .search-bar { grid-template-columns: 1fr; }
     .hero h1 { font-size: 2.5rem; }
 }
