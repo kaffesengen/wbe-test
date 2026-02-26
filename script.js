@@ -1,12 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. DATO LOGIKK
+    
+    // 1. INITIALISER CLOCK PMS WBE (Viktigst for at alle knapper skal virke)
+    if (window.clockPmsWbeInit) {
+        window.clockPmsWbeInit({
+            wbeBaseUrl: "https://sky-eu1.clock-software.com/spa/pms-wbe/#/hotel/11528",
+            language: "nb",
+            // Velger automatisk mobil eller desktop-modus basert på skjermbredde
+            defaultMode: window.innerWidth < 900 ? "mobile" : "fullscreen"
+        });
+    }
+
+    // 2. DATO-LOGIKK FOR PAKKE-BOOKING (Sørger for at datoene alltid er aktuelle)
     const today = new Date();
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
     
     const fmt = (d) => d.toISOString().split('T')[0];
+    const arrivalStr = fmt(today);
+    const departureStr = fmt(tomorrow);
 
-    // 2. INITIALISER FLAT PICKR (Hvis feltet finnes på siden)
+    // 3. FLAT PICKR INITIALISERING (For søkefeltet på forsiden)
     const dateInput = document.getElementById("date-range-input");
     if (dateInput) {
         flatpickr("#date-range-input", {
@@ -23,17 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 3. INITIALISER CLOCK PMS WBE
-    // Merk: Vi bruker standard init uten videresending her
-    if (window.clockPmsWbeInit) {
-        window.clockPmsWbeInit({
-            wbeBaseUrl: "https://sky-eu1.clock-software.com/spa/pms-wbe/#/hotel/11528",
-            defaultMode: window.innerWidth < 900 ? "mobile" : "fullscreen",
-            language: "nb"
-        });
-    }
-
-    // 4. SØKEKNAPP (SØK LEDIGE ROM)
+    // 4. LOGIKK FOR SØKEKJEMA (SØK LEDIGE ROM)
     const searchForm = document.getElementById("wbe-form-main");
     if (searchForm) {
         searchForm.addEventListener("submit", (e) => {
@@ -43,39 +46,33 @@ document.addEventListener("DOMContentLoaded", () => {
             const bonus = document.getElementById("bonus-input").value;
 
             if (!arrival || !departure) {
-                alert("Vennligst velg datoer i kalenderen først.");
+                alert("Vennligst velg datoer i kalenderen.");
                 return;
             }
 
             const params = { arrival, departure, submit: true };
-            if (bonus && bonus.trim() !== "") params.bonusCode = bonus.trim();
+            
+            // Sender kun bonuskode hvis feltet faktisk er fylt ut
+            if (bonus && bonus.trim() !== "") {
+                params.bonusCode = bonus.trim();
+            }
 
             window.clockPmsWbeShow(params);
         });
     }
 
-    // 5. PAKKE-KNAPPER (Knyttet til rateIds)
-    const pkgAction = (id) => {
+    // 5. PAKKE-KNAPPER (Knyttet til de spesifikke pakkene på forsiden)
+    const openPackage = (rateId) => {
         window.clockPmsWbeShowRooms({
-            arrival: fmt(today),
-            departure: fmt(tomorrow),
-            rateIds: [id],
+            arrival: arrivalStr,
+            departure: departureStr,
+            rateIds: [rateId],
             submit: true
         });
     };
 
-    document.getElementById("pkg-romantikk")?.addEventListener("click", () => pkgAction(734476));
-    document.getElementById("pkg-girls")?.addEventListener("click", () => pkgAction(734474));
-    document.getElementById("pkg-sauna")?.addEventListener("click", () => pkgAction(734475));
+    document.getElementById("pkg-romantikk")?.addEventListener("click", () => openPackage(734476));
+    document.getElementById("pkg-girls")?.addEventListener("click", () => openPackage(734474));
+    document.getElementById("pkg-sauna")?.addEventListener("click", () => openPackage(734475));
 
-    // 6. AKTIVITET-KNAPPER (Aktiviteter side)
-    const actAction = (id) => {
-        window.clockPmsWbeShowActivities({
-            activityIds: [id]
-        });
-    };
-
-    document.getElementById("act-sykkel")?.addEventListener("click", () => actAction(159));
-    document.getElementById("act-kajakk")?.addEventListener("click", () => actAction(160));
-    document.getElementById("act-sup")?.addEventListener("click", () => actAction(161));
 });
