@@ -51,7 +51,7 @@
 
         <div class="package-grid">
             <div class="image-box">
-                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" alt="Hotellrom">
+                <img src="https://cdn.sanity.io/images/62o36hlg/production_v4/d0dc5835d1f9846c48e676e0a8ee2abe06574162-4000x6000.jpg?auto=format&dpr=1&fit=crop&fp-x=0.5&fp-y=0.5&h=3682&q=80&rect=596,885,2809,3808&w=1150" alt="Romantisk opplevelse">
             </div>
             <div class="text-box">
                 <h3>Dette er inkludert:</h3>
@@ -61,9 +61,36 @@
                     <li>Musserende vin på rommet</li>
                     <li>Fri tilgang til velværeavdeling</li>
                 </ul>
-                <button type="button" class="btn-main" data-clock-pms-wbe-button>Bestill nå</button>
+                <button type="button" class="btn-main" id="btn-romantikk">ROMANTISK PAKKE</button>
             </div>
         </div>
+
+        <hr class="divider">
+
+        <section class="activities">
+            <h2>Utforsk omgivelsene</h2>
+            <p>Gjør oppholdet komplett med våre utleieaktiviteter.</p>
+            <div class="activity-grid">
+                <div class="activity-card glassmorphic">
+                    <img src="https://images.unsplash.com/photo-1571333250630-f0230c320b6d?auto=format&fit=crop&w=600&q=80" alt="EL-sykkel">
+                    <h3>EL-sykkel</h3>
+                    <p>Utforsk kystlandskapet uten melkesyre. Perfekt for å oppdage skjulte perler i nærområdet.</p>
+                    <button type="button" class="btn-activity" onclick='window.clockPmsWbeShowActivities({"activityIds":[159]})'>Lei EL-sykkel</button>
+                </div>
+                <div class="activity-card glassmorphic">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Havkajakk">
+                    <h3>Havkajakk</h3>
+                    <p>Opplev stillheten på fjorden. Vi har stødige kajakker for både nybegynnere og erfarne.</p>
+                    <button type="button" class="btn-activity" onclick='window.clockPmsWbeShowActivities({"activityIds":[160]})'>Lei Havkajakk</button>
+                </div>
+                <div class="activity-card glassmorphic">
+                    <img src="https://images.unsplash.com/photo-1520242253291-94981d2396e2?auto=format&fit=crop&w=600&q=80" alt="SUP">
+                    <h3>SUP-brett</h3>
+                    <p>Finn balansen på vannet. Stand-Up Paddleboard er en fantastisk måte å nyte havet på.</p>
+                    <button type="button" class="btn-activity" onclick='window.clockPmsWbeShowActivities({"activityIds":[161]})'>Lei SUP-brett</button>
+                </div>
+            </div>
+        </section>
     </main>
 
     <script src="script.js"></script>
