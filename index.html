@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantisk Pakke | Panorama Test</title>
+
+    <link rel="stylesheet" href="https://static-assets.clock-software.com/wbe_v2/clock-pms-wbe-integration.css">
+    <link rel="stylesheet" href="https://static-assets.clock-software.com/wbe_v2/clock-pms-wbe-reminder.css">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <script defer src="https://static-assets.clock-software.com/wbe_v2/clock-pms-wbe-integration.js"></script>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>ROMANTISK PAKKE</h1>
+            <p>Eksklusiv tid for to ved havet</p>
+        </div>
+    </header>
+
+    <div class="booking-bar">
+        <form data-clock-pms-wbe-form id="wbe-form">
+            <div class="input-group">
+                <label>Ankomst</label>
+                <input type="date" name="arrival">
+            </div>
+            <div class="input-group">
+                <label>Avreise</label>
+                <input type="date" name="departure">
+            </div>
+            <input type="hidden" name="bonusCode" value="ROMANTIKK">
+            <button type="submit" class="btn-main">Sjekk pris</button>
+        </form>
+    </div>
+
+    <main class="container">
+        <section class="intro">
+            <h2>En uforglemmelig opplevelse</h2>
+            <p>Inspirert av vestlandsk natur og luksuriøs komfort.</p>
+        </section>
+
+        <div class="package-grid">
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" alt="Hotellrom">
+            </div>
+            <div class="text-box">
+                <h3>Dette er inkludert:</h3>
+                <ul>
+                    <li>Overnatting i suite med havutsikt</li>
+                    <li>3-retters middag i restauranten</li>
+                    <li>Musserende vin på rommet</li>
+                    <li>Fri tilgang til velværeavdeling</li>
+                </ul>
+                <button type="button" class="btn-main" data-clock-pms-wbe-button>Bestill nå</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
