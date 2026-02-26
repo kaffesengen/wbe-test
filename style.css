@@ -1,141 +1,126 @@
 :root {
-    --panorama-dark: #1a1c1b;
-    --panorama-gold: #b89b5e;
-    --panorama-brown: #a66a3a; /* Knappe-fargen fra bildet */
-    --panorama-beige: #f4f1e9; /* Bakgrunnsfargen fra bildet */
-    --white: #ffffff;
-    --text-main: #4a4a4a;
+    --p-brown: #a66a3a; /* Karakteristisk brunfarge fra bildet */
+    --p-beige: #f4f1e9; /* Beige bakgrunnsfarge fra bildet */
+    --p-dark: #1a1c1b;
 }
-
-* { box-sizing: border-box; }
 
 body {
     font-family: 'Georgia', serif;
     margin: 0;
-    color: var(--text-main);
-    line-height: 1.7;
-    background-color: var(--white);
+    color: var(--p-dark);
 }
 
-.container {
-    max-width: 1200px;
+.bg-beige { background-color: var(--p-beige); }
+
+/* Full bredde containere */
+.container-wide {
+    width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 20px;
 }
 
-/* Navigasjon */
+/* Navbar */
 .navbar {
     position: fixed;
     top: 0; width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 25px 0;
+    background: #fff;
     z-index: 1000;
-    border-bottom: 1px solid #f0eee8;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0ddd5;
 }
 
-.nav-container {
+.nav-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 0 40px;
 }
 
-.nav-logo { font-weight: bold; letter-spacing: 4px; font-size: 1.4rem; color: var(--panorama-dark); }
+.nav-logo { font-weight: bold; letter-spacing: 4px; font-size: 1.2rem; }
 
-.nav-links { list-style: none; display: flex; gap: 40px; align-items: center; margin: 0; }
-.nav-links a { text-decoration: none; color: var(--panorama-dark); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
+.nav-links { list-style: none; display: flex; gap: 30px; align-items: center; margin: 0; }
+.nav-links a { text-decoration: none; color: var(--p-dark); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
 
-/* Hero Seksjon */
-.hero {
-    height: 70vh;
-    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
-                url('https://cdn.sanity.io/images/62o36hlg/production_v4/7eeba6d48dfd62a2ddf8872bffe5019b159d07d1-3250x2298.jpg?auto=format&w=1600&q=80') center/cover;
+/* Hero Full bredde */
+.hero-full {
+    height: 80vh;
+    background: url('https://cdn.sanity.io/images/62o36hlg/production_v4/7eeba6d48dfd62a2ddf8872bffe5019b159d07d1-3250x2298.jpg?auto=format&w=1600') center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--white);
+    text-align: center;
+    color: #fff;
 }
 
-.hero h1 { font-size: 4rem; font-weight: normal; letter-spacing: 2px; }
+.hero-content h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin: 0; font-weight: normal; }
 
-/* Booking Seksjon */
-.booking-section { background-color: var(--panorama-beige); padding: 80px 0; margin-top: 0; }
+/* Booking Banner */
+.booking-banner {
+    background-color: var(--p-beige);
+    padding: 60px 0;
+}
 
-.search-bar {
-    background: var(--white);
+.search-flex {
+    background: #fff;
     padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 30px;
-    border-radius: 2px;
+    grid-template-columns: 2fr 1fr auto;
+    gap: 20px;
+    align-items: end;
 }
 
-.input-field label { font-size: 0.75rem; text-transform: uppercase; color: var(--panorama-dark); margin-bottom: 10px; display: block; letter-spacing: 1px; }
-.input-field input { width: 100%; padding: 15px; border: 1px solid #e0ddd5; border-radius: 4px; font-size: 1rem; }
-
-/* Pakke-seksjon (Våre pakker) */
-.offers-section { background-color: var(--panorama-beige); padding: 100px 0; }
-
-.section-header { text-align: center; margin-bottom: 60px; }
-.section-header h2 { font-size: 2.2rem; font-weight: normal; margin-bottom: 10px; }
-.section-header p { font-style: italic; color: var(--text-main); }
-
-.offers-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
-
-/* Kort-design basert på bilde */
-.offer-card {
-    background: var(--white);
-    border-radius: 4px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-}
-
-.offer-img img { width: 100%; height: 220px; object-fit: cover; }
-
-.offer-content { padding: 35px; flex-grow: 1; }
-.offer-content h3 { font-size: 1.1rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; color: var(--panorama-dark); }
-.offer-content .subtitle { display: block; font-size: 0.9rem; font-weight: bold; margin-bottom: 15px; }
-.offer-content p { font-size: 0.95rem; color: var(--text-main); margin-bottom: 25px; line-height: 1.6; }
-
-/* Knappene fra bildet */
-.btn-search, .btn-package, .btn-cta, .btn-nav {
-    background-color: var(--panorama-brown);
-    color: var(--white);
+/* Knapper fra Panorama-designet */
+.btn-search, .btn-card, .btn-nav {
+    background-color: var(--p-brown);
+    color: #fff;
     border: none;
-    padding: 12px 25px;
+    padding: 15px 30px;
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    border-radius: 4px;
-    transition: background 0.3s ease;
+    transition: 0.3s;
 }
 
-.btn-search:hover, .btn-package:hover, .btn-cta:hover { background-color: #8c582f; }
+.btn-search:hover, .btn-card:hover { background-color: #8c582f; }
 
-.btn-secondary {
+.btn-outline {
     background: none;
-    border: 1px solid #e0ddd5;
-    color: var(--text-main);
-    padding: 10px 20px;
-    font-size: 0.75rem;
+    border: 1px solid #ddd;
+    padding: 14px 25px;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    border-radius: 4px;
     cursor: pointer;
-    margin-top: 15px;
 }
 
-/* Mobil-skalering */
-@media (max-width: 1024px) {
-    .offers-grid { grid-template-columns: 1fr; }
-    .search-bar { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 2.5rem; }
+/* Offers Grid */
+.offers-full { background-color: var(--p-beige); padding-bottom: 100px; }
+.offers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.offer-card { background: #fff; border-radius: 4px; overflow: hidden; }
+.offer-card img { width: 100%; height: 250px; object-fit: cover; }
+.card-body { padding: 30px; }
+.card-body h3 { font-size: 1.2rem; margin-bottom: 5px; }
+.subtitle { font-weight: bold; font-size: 0.9rem; margin-bottom: 15px; display: block; }
+.card-footer { display: flex; gap: 10px; margin-top: 20px; }
+
+/* Aktivitet Side-layout */
+.page-header { padding: 150px 0 50px; text-align: center; background-color: var(--p-beige); }
+.activity-grid-full { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+.activity-box { background: #fff; padding: 0; }
+.activity-box img { width: 100%; height: 400px; object-fit: cover; }
+.activity-info { padding: 40px; }
+
+/* Mobil-tilpasning */
+@media (max-width: 992px) {
+    .search-flex { grid-template-columns: 1fr; padding: 20px; width: 90%; }
+    .offers-grid, .activity-grid-full { grid-template-columns: 1fr; }
+    .nav-links { display: none; } /* Enkelt for mobil nå, du kan legge til burger-meny senere */
 }
