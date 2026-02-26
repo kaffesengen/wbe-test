@@ -22,13 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const formData = new FormData(e.target);
             
             window.clockPmsWbeShow({
-                arrival: formData.get("arrival"),
-                departure: formData.get("departure"),
-                bonusCode: formData.get("bonusCode"),
-                // Vi oppdaterer modusen her også i tilfelle brukeren har snudd skjermen
-                mode: isMobile() ? "mobile" : "fullscreen",
-                submit: true 
-            });
+    arrival: formData.get("arrival"),
+    departure: formData.get("departure"),
+    // bonusCode: formData.get("bonusCode"), // Kommenter ut denne linjen midlertidig
+    submit: true 
+});
         });
     }
 
