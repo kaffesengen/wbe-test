@@ -1,20 +1,22 @@
 :root {
-    --panorama-green: #2c3e34; /* Mørk profilfarge fra Panorama */
+    --panorama-green: #2c3e34;
     --panorama-gold: #b89b5e;
     --white: #ffffff;
 }
 
 body {
-    font-family: 'Playfair Display', serif; /* Typisk for luksushotell */
+    font-family: 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
     color: #333;
+    background-color: #fff;
 }
 
 .hero {
-    height: 75vh;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                url('https://panoramahotell.no/wp-content/uploads/2023/04/panorama-hotell-resort-10.jpg') center/cover;
+    height: 80vh;
+    /* Bildet du sendte er lagt inn her */
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                url('https://s3-eu-west-1.amazonaws.com/stripo.clock-pms/fed8d5b42144444d91ef462b1b04d605/lib/pluginId_fed8d5b42144444d91ef462b1b04d605_images/a321db46-c7d5-4784-9d14-ad982d97592b/11528/nr3a0196edit2.jpg') center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,31 +24,40 @@ body {
     text-align: center;
 }
 
-/* Glassmorphism Design */
+.hero-content h1 {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* Glassmorphism feltet */
 .booking-bar-container {
-    margin-top: -50px; /* Overlapper hero-bildet */
+    margin-top: -60px;
     display: flex;
     justify-content: center;
     padding: 0 20px;
+    position: relative;
+    z-index: 10;
 }
 
 .glassmorphic {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px; /* Svært avrundede kanter */
-    padding: 20px 40px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 60px;
+    padding: 25px 50px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
 }
 
 #wbe-form {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 25px;
 }
 
 .input-group {
@@ -56,41 +67,63 @@ body {
 }
 
 .input-group label {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     color: white;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-weight: 600;
 }
 
 .input-group input {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     border: none;
-    padding: 12px 20px;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    color: var(--panorama-green);
+    padding: 14px 25px;
+    border-radius: 30px;
+    font-size: 1rem;
+    outline: none;
 }
 
 .btn-main {
     background-color: var(--panorama-gold);
     color: white;
-    padding: 15px 35px;
+    padding: 16px 45px;
     border: none;
-    border-radius: 30px;
+    border-radius: 40px;
     text-transform: uppercase;
     font-weight: bold;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: transform 0.2s, background 0.3s;
 }
 
 .btn-main:hover {
-    background-color: white;
+    background-color: var(--white);
     color: var(--panorama-gold);
+    transform: translateY(-2px);
 }
 
-/* Mobil-tilpasning */
+/* Innhold under hero */
+.container {
+    max-width: 1100px;
+    margin: 100px auto;
+    padding: 0 20px;
+}
+
+.package-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.image-box img {
+    width: 100%;
+    border-radius: 10px;
+}
+
 @media (max-width: 768px) {
     #wbe-form { flex-direction: column; }
-    .glassmorphic { border-radius: 20px; padding: 30px; }
+    .glassmorphic { border-radius: 25px; padding: 30px 20px; margin-top: -100px; }
+    .package-grid { grid-template-columns: 1fr; }
 }
